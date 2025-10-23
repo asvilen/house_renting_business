@@ -1,4 +1,4 @@
-name: Start and test the app
+name: Build and test
 
 on:
   push:
@@ -7,20 +7,18 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build_test:
 
     runs-on: ubuntu-latest
 
     steps:
-    - name: Run actions checkout
+    - name: Repo checkout
       uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Building the app
-      run: dotnet build --no-restore
-    - name: Running the tests
+        dotnet-version: 9.0.x
+    - name: Build
+      run: dotnet build
+    - name: Execute unit and integration tests
       run: dotnet test --no-build --verbosity normal
