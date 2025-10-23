@@ -13,17 +13,17 @@ pipeline {
                 sh 'dotnet build --no-restore'
             }
         }
+    }
     
-        post {
-            always {
-                cleanWs()
-            }
-            success {
-                echo 'Pipeline succeeded!'
-            }
-            failure {
-                echo 'Pipeline failed!'
-            }
+    post {
+        always {
+            cleanWs()
+        }
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        failure {
+            echo 'Pipeline failed!'
         }
     }
 }
