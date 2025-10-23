@@ -4,15 +4,15 @@ pipeline {
     stages {
         stage("Restore project dependencies") {
             steps {
-                sh 'dotnet restore'
+                sh 'dotnet'
             }
         }
         
-        stage("Build the project") {
-            steps {
-                sh 'dotnet build --no-restore'
-            }
-        }
+        // stage("Build the project") {
+        //     steps {
+        //         sh 'dotnet build --no-restore'
+        //     }
+        // }
     }
     
     post {
