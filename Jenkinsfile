@@ -4,15 +4,21 @@ pipeline {
     stages {
         stage("Restore project dependencies") {
             steps {
-                sh 'dotnet'
+                sh 'dotnet restore'
             }
         }
         
-        // stage("Build the project") {
-        //     steps {
-        //         sh 'dotnet build --no-restore'
-        //     }
-        // }
+        stage("Build the project") {
+            steps {
+                sh 'dotnet build --no-restore'
+            }
+        }
+
+        stage("Test the application") {
+            steps {
+                sh 'dotnet test --no-build --verbosity normal'
+            }
+        }
     }
     
     post {
